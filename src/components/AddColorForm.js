@@ -1,4 +1,5 @@
 import React from 'react'
+import '../stylesheets/AddColorForm.scss'
 
 const AddColorForm = ({onNewColor=f=>f}) => {
     let _title, _color
@@ -10,7 +11,7 @@ const AddColorForm = ({onNewColor=f=>f}) => {
         _title.focus()
     }
     return (
-        <form onSubmit={submit}>
+        <form className="add-color" onSubmit={submit}>
             <input ref={input => _title = input} 
                    type="text"
                    placeholder="color title..." required/>

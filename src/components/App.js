@@ -2,6 +2,7 @@ import React from 'react'
 import { v4 } from 'uuid'
 import AddColorForm from './AddColorForm'
 import ColorList from './ColorList'
+import '../stylesheets/APP.scss'
 
 const { Component } = React
 
@@ -12,6 +13,8 @@ class App extends Component {
             colors: []
         }
         this.addColor = this.addColor.bind(this)
+        this.rateColor = this.rateColor.bind(this)
+        this.removeColor = this.removeColor.bind(this)
     }
 
     addColor(title, color) {
@@ -27,13 +30,34 @@ class App extends Component {
         this.setState({colors})
     }
 
+    rateColor(id, rating) {
+        this.setState((prevState) => ({
+            colors: prevState.colors.map(color =>
+                (color.id !== id) ?
+                color :
+                {
+                    ...color,
+                    rating
+                }
+            )
+        }))
+    }
+
+    removeColor(id) {
+        this.setState(prevState => ({
+            colors: prevState.colors.filter(color => color.id !== id)
+        }))
+    }
+
     render() {
-        const { addColor } = this
+        const { addColor, rateColor, removeColor} = this
         const { colors } = this.state
         return (
             <div className="app">
                 <AddColorForm onNewColor={addColor} />
-                <ColorList colors={colors} />
+                <ColorList colors={colors}
+                           onRate={rateColor}
+                           onRemove={removeColor}/>
             </div>
         )
     }
