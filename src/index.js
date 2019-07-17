@@ -1,16 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
-import './App.css'
 import * as serviceWorker from './serviceWorker'
 
-import StarRating from './components/StarRating'
+import App from './components/App'
 
 const { render } = ReactDOM
 
 
 render(
-    <StarRating />,
+    <App />,
     document.getElementById('root')
 )
 
